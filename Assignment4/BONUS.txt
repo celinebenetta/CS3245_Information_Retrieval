@@ -1,0 +1,25 @@
+1. Query Expansion
+Including synonyms of terms that appear in the original query. Implemented in the expand_query function by making use of nltk library in Python.
+We found that query vector quickly exploded in size as we consider all the synonyms found in the query, which quickly slow down the execution time of searching process.
+We tried to mitigate this by taking only the few top synonyms and/or taking less tf-idf value for terms in the synonyms.
+Generally, we found this method to worsen the performance by a great deal in terms of execution time and overall F score.
+We think that this method may be more beneficial if used when queries are too general or too short or in a more casula context i.e., outside law.
+We believe that since the index were meant to be used by lawyers, they will more likely to search for more specific and technical queries.
+Hence, we decided to omit this method from our final searching process.
+
+2. Relevance Feedback
+Consider terms in given relevant document(s) as an extention to the original query given. Implemeted in the relevance_feedback function.
+Following the Rocchio's Formula: q = alpha * q0 + beta * (sum(relevant_docs) / len(relevant_docs)) - gamma * (sum(irrelevant_docs) / len(irrelevant_docs))
+As we are not privy to any known irrelevant documents, only a subset of the formula implemeted 'q = alpha * q0 + beta * (sum(relevant_docs) / len(relevant_docs))'
+By taking terms in relevant documets we expanded the query vector and increase the value of the original terms in the query.
+Adjusting the alpha and beta value, we found that lower alpha value resulted in worse performance.
+We think that this was a result of putting less importance in terms that appear in the original query.
+We also decided to keep only the top 20 most value adding terms as the query quickly explode in size if we were to consider all terms in the relevant documents.
+Additionally, we also only considered terms that appear in all relevant documents in hope of finding common themes in the documents.
+
+3. Pseudo Relevance Feedback
+Iterations of relevance feedback done after obtaining the initial result of the searching process by taking the top k documents as the relevant documents. Implemented in pseudo_relevance_feedback function.
+We found that this process generally did not help much if at all in the overall performance of the searching process.
+Reiterating a few times has varied effects on performance, generally performing worse if original relevant documents actually 
+contained very few common terms in expanded query vector compared to other documents in pseudo relevant documents i.e., original results used to expand the query are of poor quality.
+Hence, we decided to omit this method from our final searching process.
