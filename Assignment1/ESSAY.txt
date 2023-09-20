@@ -1,0 +1,37 @@
+1. In the homework assignment, we are using character-based ngrams, 
+   i.e., the gram units are characters. Do you expect token-based ngram models to perform better?
+
+Ans: Assuming that token means individual words, most likely separated by space, I think yes. 
+	I would think that words provide a better understanding to the linguistic characterstic for different languages.
+
+2. What do you think will happen if we provided more data for each category 
+   for you to build the language models? What if we only provided more data for Indonesian?
+
+Ans: With more data, I think generally the reliability of the model will improve. 
+	Some issues may come about if among the large amount of data, certain words are abundant, thus skewing the probabilites.
+	This will be worsen if data was only given for a specific language.
+	For example, if certain words are commonly used in the Indonesian language, sentences containing those words 
+	may be more likely to be predicted as Indonesian if the probability for those words are highly skewed towards them.
+	This would pose an issue when those words are actually common in language of similar nature to Indonesian, such as Malaysian.
+	However, assuming that words are distributed fairly and no specific words have too small of a probability, with high amount of data, 
+	sparsity which would cause the probability to tend toward 0 shouldn't be an issue.
+	If high amount of data was given for only a specific language, however, I think there may be an issue depending on the kind of data provided.
+
+3. What do you think will happen if you strip out punctuations and/or numbers? What about converting upper case characters to lower case?
+
+Ans: I think stripping away punctuations and/or may or may not be useful depending on the language of interest in the model. 
+	For example, in HW1, Indonesian, Malaysian, and Tamil language share the same numeric system (0-9) 
+	which may suggest that these characters wouldn't be as useful to differentiate different language.
+	However, it will be different if we consider other languages which is very different from those 3. 
+	One perhaps extreme example is the Latin language, which uses the cardinal system (I, II, etc.)
+
+	On the other hand, for the case of HW1, I think transforming upper case to lower case characters m
+	ay be more beneficial in building the language model.
+	Looking at the data given, it seems that all 3 language generally follow the same rule for capital letters, 
+	which are on the start of the sentences and/or some special words (for Indonesian and Malaysia). 
+
+4. We use 4-gram models in this homework assignment. What do you think will happen if we varied the ngram size, such as using unigrams, bigrams and trigrams?
+
+Ans: I think increasing the number of characters used for the ngram generally provide a more in-depth information about the data.
+	In retrospect, using lower number of characters for the ngram will probably lower the reliability of the model since 
+	it will be harder to differentiate useful and stop words which provide less information.
